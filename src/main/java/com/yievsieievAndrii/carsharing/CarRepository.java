@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * CarsharingRepository
  */
-public interface CarsharingRepository extends JpaRepository<Carsharing, Long>{
-  
+public interface CarRepository extends JpaRepository<Car, Long> {
+
 }

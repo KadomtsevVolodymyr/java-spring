@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yievsieievAndrii.user.User;
+import com.yievsieievAndrii.user.UserService;
+
 @RestController
 @RequestMapping("/cars")
 public class CarsharingController {
 
   private final CarsharingService carsharingService;
+  private final UserService userService;
 
-  public CarsharingController(CarsharingService carsharingService) {
+  public CarsharingController(CarsharingService carsharingService, UserService userService) {
     this.carsharingService = carsharingService;
+    this.userService = userService;
   }
 
   @GetMapping
@@ -42,15 +47,16 @@ public class CarsharingController {
   // return "index";
   // }
 
-  // @PostMapping("/{carId}/{userId}")
-  // public boolean bookCar(@PathVariable Long carId, @PathVariable Long userId) {
-  // return carsharingService.bookCar(carId, userId);
-  // }
+  @PostMapping("/{carId}")
+  public Carsharing bookCar(@RequestBody CarsharingDTO carsharingDTO) {
+    Car car = carsharingService.getCarById(carsharingDTO.getCarId()).orElseThrow(() -> new IllegalArgumentException());
+    User user = userService.getUserById(carsharingDTO.getUserId()).orElseThrow(() -> new IllegalArgumentException());
 
-  // @DeleteMapping("/{carId}/{userId}")
-  // public boolean unbookCar(@PathVariable Long carId, @PathVariable Long userId)
-  // {
-  // return carsharingService.unbookCar(carId, userId);
-  // }
+    Carsharing carsharing = new Carsharing(car, user);
+    carsharingService.bookCar(carsharing);
+
+
+    return carsharing;
+  }
 
 }

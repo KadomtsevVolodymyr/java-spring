@@ -13,11 +13,12 @@ public class RateId implements Serializable {
   private User user;
   private Car car;
 
-  public RateId() {}
+  public RateId() {
+  }
 
   public RateId(User user, Car car) {
     this.user = user;
     this.car = car;
   }
-  
+
 }
