@@ -26,9 +26,9 @@ public class CarsharingApplication {
     cars.put(6, "Mazda RX7");
   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(CarsharingApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(CarsharingApplication.class, args);
+  }
 
 
   @GetMapping("/available")
