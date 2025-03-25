@@ -11,8 +11,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import com.yievsieievAndrii.carsharing.Carsharing;
-import com.yievsieievAndrii.carsharing.TariffType;
+import com.yievsieievAndrii.carsharing.models.Carsharing;
+import com.yievsieievAndrii.carsharing.models.TariffType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
