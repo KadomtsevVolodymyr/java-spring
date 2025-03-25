@@ -40,12 +40,6 @@ public class CarsharingController {
     return carsharingService.createCar(car);
   }
 
-  // @GetMapping("/page")
-  // public String viewCars(Model model) {
-  // model.addAttribute("message", "Hello World");
-  //
-  // return "index";
-  // }
 
   @PostMapping("/{carId}")
   public Carsharing bookCar(@RequestBody CarsharingDTO carsharingDTO) {

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kuruma Tachi</title>
+</head>
+
+<body>
+  <h1>Available Cars</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Mark</th>
+        <th>Model</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="car : ${cars}">
+        <td th:text="${car.mark}"></td>
+        <td th:text="${car.model}"></td>
+        <td>
+          <button>Book</button>
+
+          <form th:action="@{/views/cars/{id}(id=${car.id})}" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit">Delete</button>
+          </form>
+
+          <form th:action="@{/views/cars/{id}/update(id=${car.id})}" method="get">
+            <button type="submit">Update</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <h2>Create car</h2>
+    <a href="/views/cars/create">Create car</a>
+  </div>
+
+</body>
+
+</html>

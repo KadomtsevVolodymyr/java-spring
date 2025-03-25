@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Car</title>
+</head>
+
+<body>
+  <h1>Create a New Car</h1>
+
+  <form th:action="@{/views/cars}" th:object="${car}" method="post">
+    <label for="mark">Mark:</label>
+    <input type="text" id="mark" name="mark" required />
+
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model" required />
+
+    <button type="submit">Create Car</button>
+  </form>
+
+  <br>
+  <a href="/views/cars/">Back to Cars List</a>
+</body>
+
+</html>

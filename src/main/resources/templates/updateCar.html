@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Update Car</title>
+</head>
+
+<body>
+  <h1>Update Car</h1>
+  <form th:action="@{/views/cars/{id}/update(id=${car.id})}" th:object="${car}" method="post">
+    <label for="mark">Mark:</label>
+    <input type="text" id="mark" th:field="*{mark}" required />
+
+    <label for="model">Model:</label>
+    <input type="text" id="model" th:field="*{model}" required />
+
+    <button type="submit">Update</button>
+  </form>
+</body>
+
+</html>

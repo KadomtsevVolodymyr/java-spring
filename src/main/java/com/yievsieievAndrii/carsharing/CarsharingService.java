@@ -31,6 +31,14 @@ public class CarsharingService {
     return carRepository.save(car);
   }
 
+  public void deleteCar(Long id) {
+    carRepository.deleteById(id);
+  }
+
+  public void updateCar(Car car) {
+    carRepository.save(car);
+  }
+
   public Carsharing bookCar(Carsharing carsharing) {
     return carsharingRepository.save(carsharing);
   }
