@@ -1,58 +1,11 @@
 package com.yievsieievAndrii.carsharing;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import jakarta.annotation.PostConstruct;
 
 /**
  * CarsharingRepository
  */
-@Repository
-public class CarsharingRepository {
-
-  private final List<Car> cars = new ArrayList<>();
-
-  @PostConstruct
-  private void init() {
-    cars.add(new Car("Toyota", "Supra"));
-    cars.add(new Car("Nissan", "Skyline R34 GTR"));
-    cars.add(new Car("Honda", "Civic"));
-    cars.add(new Car("Toyota", "AE86"));
-    cars.add(new Car("Mazda", "RX7"));
-  }
-
-  // Make a logic where cars available (userId = null)
-  public List<Car> findAll() {
-    return cars;
-  }
-
-  public Car findById(Long id) {
-    return cars.stream().filter(car -> car.getId().equals(id)).findFirst().orElse(null);
-  }
-
-  public boolean bookCar(Long carId, Long userId) {
-
-    Car car = findById(carId);
-    if (car != null && car.getUserId() == null) {
-      car.setUserId(userId);
-      car.setIsBooked(true);
-      return true;
-    }
-    return false;
-  }
-
-  public boolean unbookCar(Long carId, Long userId) {
-    Car car = findById(carId);
-    if (car != null && car.getUserId() != null) {
-      car.setUserId(null);
-      car.setIsBooked(false);
-      return true;
-    }
-    return false;
-  }
-
+public interface CarsharingRepository extends JpaRepository<Car, Long> {
 }

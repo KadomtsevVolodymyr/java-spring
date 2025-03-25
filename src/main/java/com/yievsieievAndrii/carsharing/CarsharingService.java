@@ -1,6 +1,7 @@
 package com.yievsieievAndrii.carsharing;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -20,22 +21,12 @@ public class CarsharingService {
     return carsharingRepository.findAll();
   }
 
-  public Car getCarById(Long id) {
+  public Optional<Car> getCarById(Long id) {
     return carsharingRepository.findById(id);
   }
 
-  public boolean bookCar(Long carId, Long userId) {
-    if(userId == null) {
-      return false;
-    }
-    return carsharingRepository.bookCar(carId, userId);
-  }
-
-  public boolean unbookCar(Long carId, Long userId) {
-    if(userId == null) {
-      return false;
-    }
-    return carsharingRepository.unbookCar(carId, userId);
+  public Car createCar(Car car) {
+    return carsharingRepository.save(car);
   }
 
 }

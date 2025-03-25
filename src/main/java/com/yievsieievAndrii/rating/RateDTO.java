@@ -1,19 +1,11 @@
 package com.yievsieievAndrii.rating;
 
-/**
- * Rating
- */
+public class RateDTO {
 
-public class Rating {
   private Long userId;
   private Long carId;
   private RateEnum rate;
-
-  public Rating(Long userId, Long carId, RateEnum rate) {
-    this.userId = userId;
-    this.carId = carId;
-    this.rate = rate;
-  }
+  private String review;
 
   public Long getUserId() {
     return userId;
@@ -31,6 +23,14 @@ public class Rating {
     this.carId = carId;
   }
 
+  public String getReview() {
+    return review;
+  }
+
+  public void setReview(String review) {
+    this.review = review;
+  }
+
   public RateEnum getRate() {
     return rate;
   }
@@ -38,5 +38,4 @@ public class Rating {
   public void setRate(RateEnum rate) {
     this.rate = rate;
   }
-
 }

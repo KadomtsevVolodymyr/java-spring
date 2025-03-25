@@ -1,33 +1,40 @@
 package com.yievsieievAndrii.carsharing;
 
+import com.yievsieievAndrii.user.User;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "cars")
 public class Car {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private static Long incrementId = 1L;
-
+  @Column(nullable = false)
   private String mark;
+
+  @Column(nullable = false)
   private String model;
+
   private Boolean isBooked = false;
 
-  private Long userId = null;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true)
+  private User user;
 
-  public Car(String mark, String model) {
-    this.id = Car.incrementId++;
-    this.mark = mark;
-    this.model = model;
-  }
 
   public Long getId() {
     return id;
-  }
-
-  public static Long getIncrementId() {
-    return incrementId;
-  }
-
-  public static void setIncrementId(Long incrementId) {
-    Car.incrementId = incrementId;
   }
 
   public String getMark() {
@@ -46,12 +53,12 @@ public class Car {
     this.model = model;
   }
 
-  public Long getUserId() {
-    return userId;
+  public User getUserId() {
+    return user;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public Boolean getIsBooked() {

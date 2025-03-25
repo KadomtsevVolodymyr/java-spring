@@ -1,6 +1,7 @@
 package com.yievsieievAndrii.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class UserController {
   }
 
   @GetMapping("/{id}")
-  public User getUserById(@PathVariable Long id) {
+  public Optional<User> getUserById(@PathVariable Long id) {
     return userService.getUserById(id);
   }
 
@@ -34,9 +35,9 @@ public class UserController {
     return userService.createUser(user);
   }
 
-  @DeleteMapping("/{id}")
-  public boolean deleteUser(@PathVariable Long id) {
-    return userService.deleteUser(id);
-  }
-  
+  // @DeleteMapping("/{id}")
+  // public boolean deleteUser(@PathVariable Long id) {
+  // return userService.deleteUser(id);
+  // }
+
 }

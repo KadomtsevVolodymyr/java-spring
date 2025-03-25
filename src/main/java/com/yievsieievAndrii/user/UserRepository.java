@@ -1,43 +1,17 @@
 package com.yievsieievAndrii.user;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
-
-import jakarta.annotation.PostConstruct;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  * UserRepository
  */
-@Repository
-public class UserRepository {
-  private final List<User> users = new ArrayList<>();
 
-  @PostConstruct
-  private void init() {
-    users.add(new User("bobross", "bobross@mail.com", "1234"));
-    users.add(new User("johndoe", "towers@mail.com", "1229"));
-    users.add(new User("mazerati_boy", "hanged@mail.com", "11214"));
-    users.add(new User("one_name", "star@mail.com", "9994"));
-    users.add(new User("chelik", "magician@mail.com", "2224"));
-    users.add(new User("average_car_user", "lovers_car@mail.com", "1234"));
-  }
+public interface UserRepository extends JpaRepository<User, Long> {
 
-  public List<User> findAll() {
-    return users;
-  }
+  @Query("SELECT u FROM User u WHERE u.id = ?1")
+  Optional<User> findById(Long id);
 
-  public User findById(Long id) {
-    return users.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
-  }
-
-  public User save(User user) {
-    users.add(user);
-    return user;
-  }
-
-  public boolean deleteById(Long id) {
-    return users.removeIf(user -> user.getId().equals(id));
-  }
 }

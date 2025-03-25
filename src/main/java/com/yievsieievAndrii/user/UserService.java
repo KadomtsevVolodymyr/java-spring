@@ -1,11 +1,12 @@
 package com.yievsieievAndrii.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService  {
+public class UserService {
 
   private final UserRepository userRepository;
 
@@ -17,7 +18,7 @@ public class UserService  {
     return userRepository.findAll();
   }
 
-  public User getUserById(Long id) {
+  public Optional<User> getUserById(Long id) {
     return userRepository.findById(id);
   }
 
@@ -25,8 +26,9 @@ public class UserService  {
     return userRepository.save(user);
   }
 
-  public boolean deleteUser(Long id) {
-    return userRepository.deleteById(id);
+  public String deleteUser(Long id) {
+    userRepository.deleteById(id);
+    return "deleted";
   }
 
 }
