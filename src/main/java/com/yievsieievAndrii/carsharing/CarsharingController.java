@@ -43,7 +43,8 @@ public class CarsharingController {
 
 
   @PostMapping("/{carId}")
-  public Carsharing bookCar(@RequestBody CarsharingDTO carsharingDTO) {
+  public Carsharing bookCar(@PathVariable Long carId, @RequestBody CarsharingDTO carsharingDTO) {
+    carsharingDTO.setCarId(carId);
     Car car = carsharingService.getCarById(carsharingDTO.getCarId()).orElseThrow(() -> new IllegalArgumentException());
     User user = userService.getUserById(carsharingDTO.getUserId()).orElseThrow(() -> new IllegalArgumentException());
 

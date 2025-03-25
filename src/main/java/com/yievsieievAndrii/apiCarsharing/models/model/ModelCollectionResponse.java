@@ -1,13 +1,14 @@
-package com.yievsieievAndrii.apiCarsharing.models;
+package com.yievsieievAndrii.apiCarsharing.models.model;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.yievsieievAndrii.apiCarsharing.models.MetadataResponse;
 
 /**
  * CollectionsResponse
  */
-public class CollectionResponse {
+public class ModelCollectionResponse {
 
   @JsonProperty("collection")
   private MetadataResponse metadataResponse;

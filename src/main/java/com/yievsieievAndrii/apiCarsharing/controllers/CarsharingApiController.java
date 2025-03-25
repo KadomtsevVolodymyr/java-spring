@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.yievsieievAndrii.apiCarsharing.models.CollectionResponse;
+import com.yievsieievAndrii.apiCarsharing.models.engine.EngineCollectionResponse;
+import com.yievsieievAndrii.apiCarsharing.models.make.MakeCollectionResponse;
+import com.yievsieievAndrii.apiCarsharing.models.model.ModelCollectionResponse;
+
 
 /**
  * CarsharingApiController
@@ -19,10 +22,11 @@ public class CarsharingApiController {
   private String base = "https://carapi.app/api/";
 
   @GetMapping("/models")
-  public CollectionResponse getModels(
+  public ModelCollectionResponse getModels(
       @RequestParam(required = false) Integer page,
       @RequestParam(required = false) String sort,
       @RequestParam(required = false) String direction) {
+
     RestClient restClient = RestClient.create();
     UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(base + "/models");
 
@@ -40,10 +44,63 @@ public class CarsharingApiController {
 
     System.out.println(uriComponentsBuilder);
 
-    CollectionResponse result = restClient.get()
+    ModelCollectionResponse result = restClient.get()
         .uri(uriComponentsBuilder.toUriString())
         .retrieve()
-        .body(CollectionResponse.class);
+        .body(ModelCollectionResponse.class);
+
+    return result;
+  }
+
+
+  @GetMapping("/engines")
+  public EngineCollectionResponse getEngines(
+      @RequestParam(required = false) Integer page,
+      @RequestParam(required = false) Integer limit) {
+
+    RestClient restClient = RestClient.create();
+    UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(base + "/engines");
+
+    if (page != null) {
+      uriComponentsBuilder.queryParam("page", page);
+    }
+
+    if (limit != null) {
+      uriComponentsBuilder.queryParam("limit", limit);
+    }
+
+    System.out.println(uriComponentsBuilder);
+
+    EngineCollectionResponse result = restClient.get()
+        .uri(uriComponentsBuilder.toUriString())
+        .retrieve()
+        .body(EngineCollectionResponse.class);
+
+    return result;
+  }
+
+  @GetMapping("/makes")
+  public MakeCollectionResponse  getMakes(
+      @RequestParam(required = false) Integer page,
+      @RequestParam(required = false) Integer limit) {
+
+    RestClient restClient = RestClient.create();
+    UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(base + "/makes");
+
+    if (page != null) {
+      uriComponentsBuilder.queryParam("page", page);
+    }
+
+    if (limit != null) {
+      uriComponentsBuilder.queryParam("limit", limit);
+    }
+
+    System.out.println(uriComponentsBuilder);
+
+    MakeCollectionResponse result = restClient.get()
+        .uri(uriComponentsBuilder.toUriString())
+        .retrieve()
+        .body(MakeCollectionResponse.class);
 
     return result;
   }
