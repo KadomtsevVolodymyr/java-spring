@@ -28,7 +28,6 @@ public class CarsharingController {
   @GetMapping
   public List<Car> getAllCars() {
     List<Car> cars = carsharingService.getAllCars();
-    System.out.println(cars);
     return cars;
   }
 
@@ -48,7 +47,12 @@ public class CarsharingController {
     Car car = carsharingService.getCarById(carsharingDTO.getCarId()).orElseThrow(() -> new IllegalArgumentException());
     User user = userService.getUserById(carsharingDTO.getUserId()).orElseThrow(() -> new IllegalArgumentException());
 
-    Carsharing carsharing = new Carsharing(car, user);
+    Carsharing carsharing = new Carsharing();
+
+    carsharing.setTariff(carsharingDTO.getTariffType());
+    carsharing.setUser(user);
+    carsharing.setCar(car);
+
     carsharingService.bookCar(carsharing);
 
 

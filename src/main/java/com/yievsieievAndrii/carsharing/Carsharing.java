@@ -4,7 +4,10 @@ import java.time.LocalDate;
 
 import com.yievsieievAndrii.user.User;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
@@ -35,12 +38,17 @@ public class Carsharing {
 
   private boolean isExpired = false;
 
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private TariffType tariff;
+
   public Carsharing() {
   }
 
-  public Carsharing(Car car, User user) {
+  public Carsharing(Car car, User user, TariffType tariffType) {
     this.car = car;
     this.user = user;
+    this.tariff = tariffType;
   }
 
   public Car getCar() {
@@ -81,6 +89,14 @@ public class Carsharing {
 
   public void setExpiredAt(LocalDate expiredAt) {
     this.expiredAt = expiredAt;
+  }
+
+  public TariffType getTariff() {
+    return tariff;
+  }
+
+  public void setTariff(TariffType tariff) {
+    this.tariff = tariff;
   }
 
 }

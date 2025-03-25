@@ -87,15 +87,15 @@ public class CarsharingPageController {
     return REDIRECT_CARS; 
   }
 
-  @PutMapping("/{id}/bookCar")
-  public String bookCar(@PathVariable Long id) {
-    Car car = carsharingService.getCarById(id).orElseThrow(() -> new IllegalArgumentException("Invalid car id"));
-    User user = userService.getUserById(1L).orElseThrow(() -> new IllegalArgumentException("Invalid user id"));
-    Carsharing carsharing = new Carsharing(car, user);
-    carsharingService.bookCar(carsharing);
-
-    return REDIRECT_CARS;
-  }
+  //@PutMapping("/{id}/bookCar")
+  //public String bookCar(@PathVariable Long id) {
+  //  Car car = carsharingService.getCarById(id).orElseThrow(() -> new IllegalArgumentException("Invalid car id"));
+  //  User user = userService.getUserById(1L).orElseThrow(() -> new IllegalArgumentException("Invalid user id"));
+  //  Carsharing carsharing = new Carsharing(car, user);
+  //  carsharingService.bookCar(carsharing);
+  //
+  //  return REDIRECT_CARS;
+  //}
 
 
 

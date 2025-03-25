@@ -10,6 +10,7 @@ public class CarsharingDTO {
   private LocalDate date;
   private LocalDate expiredAt;
   private String isExpired;
+  private TariffType tariffType;
 
   public Long getUserId() {
     return userId;
@@ -49,6 +50,14 @@ public class CarsharingDTO {
 
   public void setExpiredAt(LocalDate expiredAt) {
     this.expiredAt = expiredAt;
+  }
+
+  public TariffType getTariffType() {
+    return tariffType;
+  }
+
+  public void setTariffType(TariffType tariffType) {
+    this.tariffType = tariffType;
   }
 
 }
