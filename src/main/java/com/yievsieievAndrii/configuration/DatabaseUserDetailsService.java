@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.yievsieievAndrii.user.User;
-import com.yievsieievAndrii.user.Role;
-import com.yievsieievAndrii.user.UserRepository;
+import com.yievsieievAndrii.user.models.Role;
+import com.yievsieievAndrii.user.models.User;
+import com.yievsieievAndrii.user.repositories.UserRepository;
 
 /**
  * DatabaseUserDetailsService

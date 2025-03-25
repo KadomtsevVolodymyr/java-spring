@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.yievsieievAndrii.carsharing.Car;
-import com.yievsieievAndrii.carsharing.Carsharing;
-import com.yievsieievAndrii.carsharing.CarsharingService;
-import com.yievsieievAndrii.user.User;
-import com.yievsieievAndrii.user.UserService;
+import com.yievsieievAndrii.carsharing.models.Car;
+import com.yievsieievAndrii.carsharing.models.Carsharing;
+import com.yievsieievAndrii.carsharing.services.CarsharingService;
+import com.yievsieievAndrii.user.models.User;
+import com.yievsieievAndrii.user.services.UserService;
 
 import jakarta.validation.Valid;
 
