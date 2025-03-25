@@ -3,6 +3,7 @@ package com.yievsieievAndrii.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -28,9 +29,12 @@ public class SecurityConfig {
     http
         .csrf(csrf -> csrf.disable())
         .httpBasic(Customizer.withDefaults())
-        .formLogin(formLogin -> formLogin.loginPage("/login").permitAll())
+        .formLogin(formLogin -> formLogin.loginPage("/login").defaultSuccessUrl("/views/cars", true).permitAll())
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers("/", "/auth/register", "/auth/login", "/register").permitAll()
+            .requestMatchers("/views/cars").authenticated() 
+            .requestMatchers(HttpMethod.POST, "/views/cars/{id}/bookCar").hasRole("USER") 
+            .requestMatchers(HttpMethod.DELETE, "/views/cars/{id}").hasRole("ADMIN") 
             .anyRequest().authenticated())
         .authenticationProvider(authenticationProvider());
 

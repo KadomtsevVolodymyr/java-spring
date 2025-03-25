@@ -31,4 +31,8 @@ public class UserService {
     return "deleted";
   }
 
+  public Optional<User> getUserByUsername(String username) {
+    return userRepository.findByUsername(username);
+  }
+
 }

@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-    <form action="#" th:action="@{/register}" method="post">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Register">
-    </form>
+<html lang="en" xmlns="http://www.thymeleaf.org" layout:decorate="layout">
 
-    <div th:if="${error}">
-        <p style="color:red;">${error}</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+</head>
+
+<body>
+  <section layout:fragment="content">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <div class="card shadow p-4" style="width: 400px;">
+        <h2 class="text-center mb-4">Register</h2>
+        <form action="#" th:action="@{/register}" method="post">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+        <div class="text-center mt-3">
+          <p>Already have an account? <a th:href="@{/login}" class="text-decoration-none">Login</a></p>
+        </div>
+        <div th:if="${error}" class="alert alert-danger mt-3">
+          <p th:text="${error}"></p>
+        </div>
+      </div>
     </div>
+  </section>
 </body>
+
 </html>

@@ -45,6 +45,11 @@ public class Carsharing {
   public Carsharing() {
   }
 
+  public Carsharing(Car car, User user) {
+    this.car = car;
+    this.user = user;
+  }
+
   public Carsharing(Car car, User user, TariffType tariffType) {
     this.car = car;
     this.user = user;

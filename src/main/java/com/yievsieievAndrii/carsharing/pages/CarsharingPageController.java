@@ -1,7 +1,10 @@
 package com.yievsieievAndrii.carsharing.pages;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -87,21 +90,26 @@ public class CarsharingPageController {
     return REDIRECT_CARS; 
   }
 
-  //@PutMapping("/{id}/bookCar")
-  //public String bookCar(@PathVariable Long id) {
-  //  Car car = carsharingService.getCarById(id).orElseThrow(() -> new IllegalArgumentException("Invalid car id"));
-  //  User user = userService.getUserById(1L).orElseThrow(() -> new IllegalArgumentException("Invalid user id"));
-  //  Carsharing carsharing = new Carsharing(car, user);
-  //  carsharingService.bookCar(carsharing);
-  //
-  //  return REDIRECT_CARS;
-  //}
+  @PutMapping("/{id}/bookCar")
+  public String bookCar(@PathVariable Long id) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String username = authentication.getName();
+    Car car = carsharingService.getCarById(id).orElseThrow(() -> new IllegalArgumentException("Invalid car id"));
+    User user = userService.getUserByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
+    Carsharing carsharing = new Carsharing(car, user);
+    carsharingService.bookCar(carsharing);
+
+    return REDIRECT_CARS;
+  }
 
 
 
   @PutMapping("/{id}/unbookCar")
   public String unbookCar(@PathVariable Long id) {
-    carsharingService.unbookCar(id, 1L);
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String username = authentication.getName();
+    User user = userService.getUserByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
+    carsharingService.unbookCar(id, user.getId());
     return REDIRECT_CARS;
   }
 
