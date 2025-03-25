@@ -2,15 +2,20 @@ package com.yievsieievAndrii.carsharing.repositories;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.couchbase.repository.CouchbaseRepository;
+import org.springframework.data.couchbase.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import com.yievsieievAndrii.carsharing.models.Car;
 
 /**
  * CarsharingRepository
  */
-public interface CarRepository extends JpaRepository<Car, Long> {
-  @Query("SELECT DISTINCT c FROM Car c LEFT JOIN FETCH c.carsharing cs WHERE cs.isExpired = FALSE OR cs IS NULL")
-  List<Car> findAllWithBookingStatus();
+public interface CarRepository extends CouchbaseRepository<Car, String> {
+  @Query("SELECT c.* FROM `carsharingdb` c " +
+       "LEFT JOIN `carsharingdb` cs ON META(c).id = cs.carId " +
+       "WHERE cs.isExpired = FALSE OR cs IS MISSING")
+List<Car> findAllWithBookingStatus();
+
+  List<Car> findByMark(String mark);
 }

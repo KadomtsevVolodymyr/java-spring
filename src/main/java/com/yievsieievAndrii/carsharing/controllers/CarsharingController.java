@@ -38,7 +38,7 @@ public class CarsharingController {
   }
 
   @GetMapping("/{id}")
-  public Optional<Car> getCarById(@PathVariable Long id) {
+  public Optional<Car> getCarById(@PathVariable String id) {
     return carsharingService.getCarById(id);
   }
 
@@ -49,22 +49,20 @@ public class CarsharingController {
 
 
   @DeleteMapping("/{id}")
-  public String deleteCar(@PathVariable Long id) {
+  public String deleteCar(@PathVariable String id) {
     return carsharingService.deleteCar(id);
   }
 
 
   @PostMapping("/{carId}")
-  public Carsharing bookCar(@PathVariable Long carId, @RequestBody CarsharingDTO carsharingDTO) {
+  public Carsharing bookCar(@PathVariable String carId, @RequestBody CarsharingDTO carsharingDTO) {
     carsharingDTO.setCarId(carId);
-    Car car = carsharingService.getCarById(carsharingDTO.getCarId()).orElseThrow(() -> new IllegalArgumentException());
-    User user = userService.getUserById(carsharingDTO.getUserId()).orElseThrow(() -> new IllegalArgumentException());
 
     Carsharing carsharing = new Carsharing();
 
     carsharing.setTariff(carsharingDTO.getTariffType());
-    carsharing.setUser(user);
-    carsharing.setCar(car);
+    carsharing.setUserId(carsharingDTO.getUserId());
+    carsharing.setCarId(carId);
 
     carsharingService.bookCar(carsharing);
 
@@ -73,7 +71,7 @@ public class CarsharingController {
   }
 
   @PutMapping("/{carId}/{userId}")
-  public String unbookCar(@PathVariable Long carId, @PathVariable Long userId) {
+  public String unbookCar(@PathVariable String carId, @PathVariable Long userId) {
     carsharingService.unbookCar(carId, userId);
     return "unbooked";
   }

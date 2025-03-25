@@ -6,40 +6,44 @@ import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
 import org.springframework.data.couchbase.core.mapping.event.ValidatingCouchbaseEventListener;
 import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.couchbase.client.java.query.QueryScanConsistency;
 
-/**
- * CouchbaseConfig
- */
-
 @Configuration
-@EnableCouchbaseRepositories(basePackages = { "com.yievsieievAndrii.spring.data.couchbase"})
+@EnableCouchbaseRepositories(basePackages = "com.yievsieievAndrii")
 public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
-    public static final String NODE_LIST = "localhost";
-    public static final String BUCKET_NAME = "carsharingdb";
-    public static final String BUCKET_USERNAME = "admin";
-    public static final String BUCKET_PASSWORD = "123456";
+    @Value("${couchbase.host}")
+    private String nodeList;
 
-      @Override
+    @Value("${couchbase.bucket.name}")
+    private String bucketName;
+
+    @Value("${couchbase.bucket.username}")
+    private String bucketUsername;
+
+    @Value("${couchbase.bucket.password}")
+    private String bucketPassword;
+
+    @Override
     public String getConnectionString() {
-        return NODE_LIST;
+        return nodeList;
     }
 
     @Override
     public String getUserName() {
-        return BUCKET_USERNAME;
+        return bucketUsername;
     }
 
     @Override
     public String getPassword() {
-        return BUCKET_PASSWORD;
+        return bucketPassword;
     }
 
     @Override
     public String getBucketName() {
-        return BUCKET_NAME;
+        return bucketName;
     }
 
     @Override
@@ -56,6 +60,4 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
     public ValidatingCouchbaseEventListener validatingCouchbaseEventListener() {
         return new ValidatingCouchbaseEventListener(localValidatorFactoryBean());
     }
-
-  
 }

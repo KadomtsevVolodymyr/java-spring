@@ -18,7 +18,7 @@ public class RatingService  {
   }
 
   public List<Rate> getAllRatings() {
-    return ratingRepository.findAll();
+    return (List<Rate>) ratingRepository.findAll();
   }
 
   //public Optional<Rate> getRatingById(Long rateId) {

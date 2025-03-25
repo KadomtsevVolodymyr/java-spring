@@ -1,69 +1,55 @@
 package com.yievsieievAndrii.rating.models;
 
-import java.util.Optional;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.couchbase.core.mapping.Document;
+import org.springframework.data.couchbase.core.mapping.Field;
 
-import com.yievsieievAndrii.carsharing.models.Car;
-import com.yievsieievAndrii.user.models.User;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-/**
- * Rating
- */
-
-@Entity
-@Table(name = "rate")
-@IdClass(RateId.class)
+@Document
 public class Rate {
 
-
-  @ManyToOne
-  @JoinColumn(name = "user_id", nullable = false)
   @Id
-  private User user;
+  private String id;  
 
-  @ManyToOne
-  @JoinColumn(name = "car_id", nullable = false)
-  @Id
-  private Car car;
+  @Field
+  private Long userId;  
 
-  @Column(length = 2048, nullable = false)
+  @Field
+  private String carId;   
+
+  @Field
   private String review;
 
-  @Enumerated(EnumType.STRING)
+  @Field
   private RateEnum rate;
 
   public Rate() {}
 
-  public Rate(User user, Car car, RateEnum rate, String review) {
-    this.user = user;
-    this.car = car;
+  public Rate(Long userId, String carId, RateEnum rate, String review) {
+    this.userId = userId;
+    this.carId = carId;
     this.rate = rate;
     this.review = review;
+    this.id = userId + "_" + carId; 
   }
 
-  public User getUser() {
-    return user;
+  public String getId() {
+    return id;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public Long getUserId() {
+    return userId;
   }
 
-  public Car getCar() {
-    return car;
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
-  public void setCar(Car car) {
-    this.car = car;
+  public String getCarId() {
+    return carId;
+  }
+
+  public void setCarId(String carId) {
+    this.carId = carId;
   }
 
   public RateEnum getRate() {
@@ -81,5 +67,4 @@ public class Rate {
   public void setReview(String review) {
     this.review = review;
   }
-
 }

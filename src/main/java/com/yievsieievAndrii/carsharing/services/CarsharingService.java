@@ -25,10 +25,10 @@ public class CarsharingService {
   }
 
   public List<Car> getAllCars() {
-    return carRepository.findAllWithBookingStatus();
+    return (List<Car>) carRepository.findAll();
   }
 
-  public Optional<Car> getCarById(Long id) {
+  public Optional<Car> getCarById(String id) {
     return carRepository.findById(id);
   }
 
@@ -36,7 +36,7 @@ public class CarsharingService {
     return carRepository.save(car);
   }
 
-  public String deleteCar(Long id) {
+  public String deleteCar(String id) {
     carsharingRepository.deleteByCarId(id);
     carRepository.deleteById(id);
     return "deleted";
@@ -46,8 +46,8 @@ public class CarsharingService {
     carRepository.save(car);
   }
 
-  public void unbookCar(Long carId, Long userId) {
-    carsharingRepository.unbookCar(carId, userId);
+  public void unbookCar(String carId, Long userId) {
+    carsharingRepository.deleteByCarIdAndUserId(carId, userId);
   }
 
   public Carsharing bookCar(Carsharing carsharing) {

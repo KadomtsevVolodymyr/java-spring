@@ -66,21 +66,21 @@ public class CarsharingPageController {
   }
 
   @DeleteMapping("/{id}")
-  public String deleteCar(@PathVariable Long id) {
+  public String deleteCar(@PathVariable String id) {
     System.out.println(id);
     carsharingService.deleteCar(id);
     return REDIRECT_CARS;
   }
 
   @GetMapping("/{id}/update")
-  public String showUpdateForm(@PathVariable Long id, Model model) {
+  public String showUpdateForm(@PathVariable String id, Model model) {
     Car car = carsharingService.getCarById(id).orElseThrow(() -> new IllegalArgumentException("Invalid car id"));
     model.addAttribute("car", car);
     return "updateCar"; 
   }
 
   @PostMapping("/{id}/update")
-  public String updateCar(@PathVariable Long id, @Valid @ModelAttribute Car car, BindingResult bindingResult, Model model) {
+  public String updateCar(@PathVariable String id, @Valid @ModelAttribute Car car, BindingResult bindingResult, Model model) {
     if(bindingResult.hasErrors()) {
       model.addAttribute("car", car);
       return "updateCar";
@@ -91,12 +91,12 @@ public class CarsharingPageController {
   }
 
   @PutMapping("/{id}/bookCar")
-  public String bookCar(@PathVariable Long id) {
+  public String bookCar(@PathVariable String id) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String username = authentication.getName();
     Car car = carsharingService.getCarById(id).orElseThrow(() -> new IllegalArgumentException("Invalid car id"));
     User user = userService.getUserByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
-    Carsharing carsharing = new Carsharing(car, user);
+    Carsharing carsharing = new Carsharing(car.getId(), user.getId());
     carsharingService.bookCar(carsharing);
 
     return REDIRECT_CARS;
@@ -105,7 +105,7 @@ public class CarsharingPageController {
 
 
   @PutMapping("/{id}/unbookCar")
-  public String unbookCar(@PathVariable Long id) {
+  public String unbookCar(@PathVariable String id) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String username = authentication.getName();
     User user = userService.getUserByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));

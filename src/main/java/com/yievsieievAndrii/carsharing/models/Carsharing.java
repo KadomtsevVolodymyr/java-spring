@@ -1,75 +1,71 @@
 package com.yievsieievAndrii.carsharing.models;
 
 import java.time.LocalDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.couchbase.core.mapping.Document;
+import org.springframework.data.couchbase.core.mapping.Field;
+import org.springframework.data.couchbase.core.mapping.id.GeneratedValue;
+import org.springframework.data.couchbase.core.mapping.id.GenerationStrategy;
 
-import com.yievsieievAndrii.user.models.User;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-/**
- * Carsharing
- */
-@Entity
-@Table(name = "carsharing")
-@IdClass(CarsharingId.class)
+@Document
 public class Carsharing {
 
-  @ManyToOne
   @Id
-  @JoinColumn(name = "car_id", nullable = false)
-  private Car car;
+  @GeneratedValue(strategy = GenerationStrategy.UNIQUE)
+  private String id;  
 
-  @ManyToOne
-  @Id
-  @JoinColumn(name = "user_id", nullable = false)
-  private User user;
+  @Field
+  private String carId; 
 
+  @Field
+  private Long userId;
+
+  @Field
   private LocalDate bookedAt = LocalDate.now();
 
+  @Field
   private LocalDate expiredAt = LocalDate.now().plusDays(3);
 
+  @Field
   private boolean isExpired = false;
 
-  @Column(nullable = false)
-  @Enumerated(EnumType.STRING)
+  @Field
   private TariffType tariff;
 
   public Carsharing() {
   }
 
-  public Carsharing(Car car, User user) {
-    this.car = car;
-    this.user = user;
+  public Carsharing(String carId, Long userId) {
+    this.carId = carId;
+    this.userId = userId;
+    this.id = carId + "_" + userId; 
   }
 
-  public Carsharing(Car car, User user, TariffType tariffType) {
-    this.car = car;
-    this.user = user;
+  public Carsharing(String carId, Long userId, TariffType tariffType) {
+    this.carId = carId;
+    this.userId = userId;
     this.tariff = tariffType;
+    this.id = carId + "_" + userId;
   }
 
-  public Car getCar() {
-    return car;
+  public String getId() {
+    return id;
   }
 
-  public void setCar(Car car) {
-    this.car = car;
+  public String getCarId() {
+    return carId;
   }
 
-  public User getUser() {
-    return user;
+  public void setCarId(String carId) {
+    this.carId = carId;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
   public LocalDate getBookedAt() {
@@ -103,5 +99,4 @@ public class Carsharing {
   public void setTariff(TariffType tariff) {
     this.tariff = tariff;
   }
-
 }

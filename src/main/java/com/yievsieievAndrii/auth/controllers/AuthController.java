@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yievsieievAndrii.auth.models.RegisterRequest;
-import com.yievsieievAndrii.auth.repositories.AuthService;
+import com.yievsieievAndrii.auth.services.AuthService;
 
 @RestController
 @RequestMapping("/auth")

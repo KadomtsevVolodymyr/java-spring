@@ -51,7 +51,7 @@ public class RatingController {
     Car car = carsharingService.getCarById(rateDTO.getCarId())
         .orElseThrow(() -> new IllegalArgumentException(""));
 
-    Rate rate = new Rate(user, car, rateDTO.getRate(), rateDTO.getReview());
+    Rate rate = new Rate(user.getId(), car.getId(), rateDTO.getRate(), rateDTO.getReview());
 
     return RatingService.createRating(rate);
   }

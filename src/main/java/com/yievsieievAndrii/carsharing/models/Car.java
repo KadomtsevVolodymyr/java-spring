@@ -1,43 +1,28 @@
 package com.yievsieievAndrii.carsharing.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.couchbase.core.mapping.Document;
+import org.springframework.data.couchbase.core.mapping.Field;
+import org.springframework.data.couchbase.core.mapping.id.GeneratedValue;
+import org.springframework.data.couchbase.core.mapping.id.GenerationStrategy;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(name = "cars")
+
+@Document
 public class Car {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @GeneratedValue(strategy = GenerationStrategy.UNIQUE)
+  private String id;
 
-  @NotBlank(message = "Mark cannot be empty")
-  @Size(min = 2, message = "Mark must be at least 2 characters")
-  @Column(nullable = false)
+  @Field
   private String mark;
 
-  @NotBlank(message = "Model cannot be empty")
-  @Column(nullable = false)
+  @Field
   private String model;
 
-  @OneToOne(mappedBy = "car", fetch = FetchType.LAZY)
-  @JsonIgnore
-  //@OneToMany(mappedBy = "car", fetch = FetchType.LAZY)
-  private Carsharing carsharing;
-
-  public Long getId() {
+  public String getId() {
     return id;
   }
 
@@ -57,12 +42,9 @@ public class Car {
     this.model = model;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
-  public Carsharing getCarsharing() {
-    return carsharing;
-  }
 
 }

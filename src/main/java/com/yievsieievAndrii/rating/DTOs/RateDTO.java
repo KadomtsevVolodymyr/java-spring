@@ -5,7 +5,7 @@ import com.yievsieievAndrii.rating.models.RateEnum;
 public class RateDTO {
 
   private Long userId;
-  private Long carId;
+  private String carId;
   private RateEnum rate;
   private String review;
 
@@ -17,11 +17,11 @@ public class RateDTO {
     this.userId = userId;
   }
 
-  public Long getCarId() {
+  public String getCarId() {
     return carId;
   }
 
-  public void setCarId(Long carId) {
+  public void setCarId(String carId) {
     this.carId = carId;
   }
 

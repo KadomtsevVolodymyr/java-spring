@@ -1,26 +1,29 @@
 package com.yievsieievAndrii.user.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.couchbase.core.mapping.Document;
+import org.springframework.data.couchbase.core.mapping.Field;
 
-@Entity
-@Table(name = "roles")
+@Document
 public class Role {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private String id; // Using String ID for flexibility
 
+  @Field
   private String name;
 
-  public Long getId() {
+  public Role() {}
+
+  public Role(String name) {
+    this.name = name;
+  }
+
+  public String getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -31,5 +34,4 @@ public class Role {
   public void setName(String name) {
     this.name = name;
   }
-
 }

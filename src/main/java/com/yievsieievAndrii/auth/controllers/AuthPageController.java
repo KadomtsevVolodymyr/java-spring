@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.yievsieievAndrii.auth.repositories.AuthService;
+import com.yievsieievAndrii.auth.services.AuthService;
 import com.yievsieievAndrii.user.models.User;
 
 /**

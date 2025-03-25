@@ -1,5 +1,5 @@
 
-package com.yievsieievAndrii.auth.repositories;
+package com.yievsieievAndrii.auth.services;
 
 import java.util.Collections;
 
@@ -52,7 +52,7 @@ public class AuthService {
 
     Role role = roleRepository.findByName("USER")
         .orElseThrow(() -> new RuntimeException("Role not found!"));
-    user.setRoles(Collections.singleton(role));
+    user.setRoles(Collections.singletonList(role));
 
     userRepository.save(user);
   }
@@ -63,15 +63,14 @@ public class AuthService {
       throw new RuntimeException("Username already exists");
     }
 
-    // Кодируем пароль
     user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-    // Присваиваем роль USER
-    Role role = roleRepository.findByName("USER")
-        .orElseThrow(() -> new RuntimeException("Role not found!"));
-    user.setRoles(Collections.singleton(role));
+    // Role role = roleRepository.findByName("USER")
+    //     .orElseThrow(() -> new RuntimeException("Role not found!"));
+    // user.setRoles(Collections.singletonList(role.getName()));
 
-    // Сохраняем пользователя в базе данных
+    user.setId(System.currentTimeMillis());
+
     userRepository.save(user);
   }
 

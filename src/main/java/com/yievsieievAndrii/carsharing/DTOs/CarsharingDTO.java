@@ -7,7 +7,7 @@ import com.yievsieievAndrii.carsharing.models.TariffType;
 public class CarsharingDTO {
 
   private Long userId;
-  private Long carId;
+  private String carId;
 
   private LocalDate date;
   private LocalDate expiredAt;
@@ -22,11 +22,11 @@ public class CarsharingDTO {
     this.userId = userId;
   }
 
-  public Long getCarId() {
+  public String getCarId() {
     return carId;
   }
 
-  public void setCarId(Long carId) {
+  public void setCarId(String carId) {
     this.carId = carId;
   }
 

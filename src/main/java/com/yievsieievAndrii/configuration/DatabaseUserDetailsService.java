@@ -31,8 +31,7 @@ public class DatabaseUserDetailsService implements UserDetailsService {
         user.getUsername(),
         user.getPassword(),
         user.getRoles().stream()
-            .map(Role::getName)
-            .map(SimpleGrantedAuthority::new)
+            .map(role -> new SimpleGrantedAuthority(role.getName()))
             .collect(Collectors.toList()));
 
   }
