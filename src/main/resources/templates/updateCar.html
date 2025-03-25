@@ -11,10 +11,12 @@
   <h1>Update Car</h1>
   <form th:action="@{/views/cars/{id}/update(id=${car.id})}" th:object="${car}" method="post">
     <label for="mark">Mark:</label>
-    <input type="text" id="mark" th:field="*{mark}" required />
+    <input type="text" id="mark" th:field="*{mark}"  />
+    <span th:if="${#fields.hasErrors('mark')}" th:errors="*{mark}" style="color: red;"></span>
 
     <label for="model">Model:</label>
-    <input type="text" id="model" th:field="*{model}" required />
+    <input type="text" id="model" th:field="*{model}"  />
+    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}" style="color: red;"></span>
 
     <button type="submit">Update</button>
   </form>

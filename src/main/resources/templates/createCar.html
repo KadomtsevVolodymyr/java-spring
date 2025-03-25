@@ -12,16 +12,18 @@
 
   <form th:action="@{/views/cars}" th:object="${car}" method="post">
     <label for="mark">Mark:</label>
-    <input type="text" id="mark" name="mark" required />
+    <input type="text" id="mark" name="mark" th:field="*{mark}" />
+    <span th:if="${#fields.hasErrors('mark')}" th:errors="*{mark}" style="color: red;"></span>
 
     <label for="model">Model:</label>
-    <input type="text" id="model" name="model" required />
+    <input type="text" id="model" name="model" th:field="*{model}" />
+    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}" style="color: red;"></span>
 
     <button type="submit">Create Car</button>
   </form>
 
   <br>
-  <a href="/views/cars/">Back to Cars List</a>
+  <a href="/views/cars">Back to Cars List</a>
 </body>
 
 </html>

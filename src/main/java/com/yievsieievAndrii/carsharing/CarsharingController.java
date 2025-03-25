@@ -27,7 +27,9 @@ public class CarsharingController {
 
   @GetMapping
   public List<Car> getAllCars() {
-    return carsharingService.getAllCars();
+    List<Car> cars = carsharingService.getAllCars();
+    System.out.println(cars);
+    return cars;
   }
 
   @GetMapping("/{id}")

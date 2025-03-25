@@ -15,6 +15,9 @@
         <th>Mark</th>
         <th>Model</th>
         <th>Actions</th>
+        <th>Booked by</th>
+        <th>Booked at</th>
+        <th>Expired at</th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +25,18 @@
         <td th:text="${car.mark}"></td>
         <td th:text="${car.model}"></td>
         <td>
-          <button>Book</button>
+          <form th:if="${car.carsharing == null or car.carsharing.user == null}"
+            th:action="@{/views/cars/{id}/bookCar(id=${car.id})}" method="post">
+            <input type="hidden" name="_method" value="put" />
+            <button type="submit">Book</button>
+          </form>
+
+
+          <form th:if="${car.carsharing != null and car.carsharing.user != null}"
+            th:action="@{/views/cars/{id}/unbookCar(id=${car.id})}" method="post">
+            <input type="hidden" name="_method" value="put" />
+            <button type="submit">Unbook</button>
+          </form>
 
           <form th:action="@{/views/cars/{id}(id=${car.id})}" method="post">
             <input type="hidden" name="_method" value="delete" />
@@ -33,6 +47,10 @@
             <button type="submit">Update</button>
           </form>
         </td>
+        <td th:text="${car.carsharing != null && car.carsharing.user != null ? car.carsharing.user.username : 'Not Booked'}">
+        </td>
+        <td th:text="${car.carsharing != null ? car.carsharing.bookedAt : '-'}"></td>
+        <td th:text="${car.carsharing != null ? car.carsharing.expiredAt : '-'}"></td>
       </tr>
     </tbody>
   </table>

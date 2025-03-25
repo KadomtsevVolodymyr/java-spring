@@ -4,16 +4,22 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yievsieievAndrii.carsharing.Car;
+import com.yievsieievAndrii.carsharing.Carsharing;
 import com.yievsieievAndrii.carsharing.CarsharingService;
+import com.yievsieievAndrii.user.User;
 import com.yievsieievAndrii.user.UserService;
+
+import jakarta.validation.Valid;
 
 /**
  * CarsharingPageController
@@ -21,6 +27,8 @@ import com.yievsieievAndrii.user.UserService;
 @Controller
 @RequestMapping("/views/cars")
 public class CarsharingPageController {
+
+  private static final String REDIRECT_CARS = "redirect:/views/cars";
 
   private final CarsharingService carsharingService;
   private final UserService userService;
@@ -45,15 +53,20 @@ public class CarsharingPageController {
   }
 
   @PostMapping
-  public String createCar(@ModelAttribute Car car) {
+  public String createCar(@Valid @ModelAttribute Car car, BindingResult bindingResult, Model model) {
+    if(bindingResult.hasErrors()) {
+      model.addAttribute("car", car);
+      return "createCar";
+    }
     carsharingService.createCar(car);
-    return "redirect:/views/cars";
+    return REDIRECT_CARS;
   }
 
   @DeleteMapping("/{id}")
   public String deleteCar(@PathVariable Long id) {
+    System.out.println(id);
     carsharingService.deleteCar(id);
-    return "redirect:/views/cars";
+    return REDIRECT_CARS;
   }
 
   @GetMapping("/{id}/update")
@@ -64,10 +77,32 @@ public class CarsharingPageController {
   }
 
   @PostMapping("/{id}/update")
-  public String updateCar(@PathVariable Long id, @ModelAttribute Car car) {
+  public String updateCar(@PathVariable Long id, @Valid @ModelAttribute Car car, BindingResult bindingResult, Model model) {
+    if(bindingResult.hasErrors()) {
+      model.addAttribute("car", car);
+      return "updateCar";
+    }
     car.setId(id); 
     carsharingService.updateCar(car); 
-    return "redirect:/views/cars"; 
+    return REDIRECT_CARS; 
+  }
+
+  @PutMapping("/{id}/bookCar")
+  public String bookCar(@PathVariable Long id) {
+    Car car = carsharingService.getCarById(id).orElseThrow(() -> new IllegalArgumentException("Invalid car id"));
+    User user = userService.getUserById(1L).orElseThrow(() -> new IllegalArgumentException("Invalid user id"));
+    Carsharing carsharing = new Carsharing(car, user);
+    carsharingService.bookCar(carsharing);
+
+    return REDIRECT_CARS;
+  }
+
+
+
+  @PutMapping("/{id}/unbookCar")
+  public String unbookCar(@PathVariable Long id) {
+    carsharingService.unbookCar(id, 1L);
+    return REDIRECT_CARS;
   }
 
 }

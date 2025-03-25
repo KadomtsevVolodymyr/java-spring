@@ -20,7 +20,7 @@ public class CarsharingService {
   }
 
   public List<Car> getAllCars() {
-    return carRepository.findAll();
+    return carRepository.findAllWithBookingStatus();
   }
 
   public Optional<Car> getCarById(Long id) {
@@ -32,11 +32,16 @@ public class CarsharingService {
   }
 
   public void deleteCar(Long id) {
+    carsharingRepository.deleteByCarId(id);
     carRepository.deleteById(id);
   }
 
   public void updateCar(Car car) {
     carRepository.save(car);
+  }
+
+  public void unbookCar(Long carId, Long userId) {
+    carsharingRepository.unbookCar(carId, userId);
   }
 
   public Carsharing bookCar(Carsharing carsharing) {
