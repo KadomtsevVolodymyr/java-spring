@@ -14,29 +14,29 @@ import jakarta.annotation.PostConstruct;
 @Repository
 public class CarsharingRepository {
 
-  private final List<Carsharing> cars = new ArrayList<>();
+  private final List<Car> cars = new ArrayList<>();
 
   @PostConstruct
   private void init() {
-    cars.add(new Carsharing("Toyota", "Supra"));
-    cars.add(new Carsharing("Nissan", "Skyline R34 GTR"));
-    cars.add(new Carsharing("Honda", "Civic"));
-    cars.add(new Carsharing("Toyota", "AE86"));
-    cars.add(new Carsharing("Mazda", "RX7"));
+    cars.add(new Car("Toyota", "Supra"));
+    cars.add(new Car("Nissan", "Skyline R34 GTR"));
+    cars.add(new Car("Honda", "Civic"));
+    cars.add(new Car("Toyota", "AE86"));
+    cars.add(new Car("Mazda", "RX7"));
   }
 
   // Make a logic where cars available (userId = null)
-  public List<Carsharing> findAll() {
+  public List<Car> findAll() {
     return cars;
   }
 
-  public Carsharing findById(Long id) {
+  public Car findById(Long id) {
     return cars.stream().filter(car -> car.getId().equals(id)).findFirst().orElse(null);
   }
 
   public boolean bookCar(Long carId, Long userId) {
 
-    Carsharing car = findById(carId);
+    Car car = findById(carId);
     if (car != null && car.getUserId() == null) {
       car.setUserId(userId);
       car.setIsBooked(true);
@@ -46,7 +46,7 @@ public class CarsharingRepository {
   }
 
   public boolean unbookCar(Long carId, Long userId) {
-    Carsharing car = findById(carId);
+    Car car = findById(carId);
     if (car != null && car.getUserId() != null) {
       car.setUserId(null);
       car.setIsBooked(false);

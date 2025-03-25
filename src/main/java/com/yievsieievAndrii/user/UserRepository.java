@@ -16,12 +16,12 @@ public class UserRepository {
 
   @PostConstruct
   private void init() {
-    users.add(new User("bobross", "bobross@mail.com", "{noop}1234"));
-    users.add(new User("johndoe", "towers@mail.com", "{noop}1229"));
-    users.add(new User("mazerati_boy", "hanged@mail.com", "{noop}11214"));
-    users.add(new User("one_name", "star@mail.com", "{noop}9994"));
-    users.add(new User("chelik", "magician@mail.com", "{noop}2224"));
-    users.add(new User("average_car_user", "lovers_car@mail.com", "{noop}1234"));
+    users.add(new User("bobross", "bobross@mail.com", "1234"));
+    users.add(new User("johndoe", "towers@mail.com", "1229"));
+    users.add(new User("mazerati_boy", "hanged@mail.com", "11214"));
+    users.add(new User("one_name", "star@mail.com", "9994"));
+    users.add(new User("chelik", "magician@mail.com", "2224"));
+    users.add(new User("average_car_user", "lovers_car@mail.com", "1234"));
   }
 
   public List<User> findAll() {

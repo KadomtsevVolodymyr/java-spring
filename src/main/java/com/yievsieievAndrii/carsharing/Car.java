@@ -1,6 +1,6 @@
 package com.yievsieievAndrii.carsharing;
 
-public class Carsharing {
+public class Car {
 
   private Long id;
 
@@ -12,8 +12,8 @@ public class Carsharing {
 
   private Long userId = null;
 
-  public Carsharing(String mark, String model) {
-    this.id = Carsharing.incrementId++;
+  public Car(String mark, String model) {
+    this.id = Car.incrementId++;
     this.mark = mark;
     this.model = model;
   }
@@ -27,7 +27,7 @@ public class Carsharing {
   }
 
   public static void setIncrementId(Long incrementId) {
-    Carsharing.incrementId = incrementId;
+    Car.incrementId = incrementId;
   }
 
   public String getMark() {
