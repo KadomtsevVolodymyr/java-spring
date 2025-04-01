@@ -1,9 +1,9 @@
-package com.yievsieievAndrii.apiCarsharing.models.model;
+package com.volodymyrKadomtsev.apiCarsharing.models.model;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yievsieievAndrii.apiCarsharing.models.MetadataResponse;
+import com.volodymyrKadomtsev.apiCarsharing.models.MetadataResponse;
 
 /**
  * CollectionsResponse

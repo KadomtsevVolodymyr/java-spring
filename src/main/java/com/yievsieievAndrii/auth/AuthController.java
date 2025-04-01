@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.auth;
+package com.volodymyrKadomtsev.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

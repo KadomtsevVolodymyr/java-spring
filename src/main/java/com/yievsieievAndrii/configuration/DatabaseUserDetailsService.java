@@ -1,5 +1,5 @@
 
-package com.yievsieievAndrii.configuration;
+package com.volodymyrKadomtsev.configuration;
 
 import java.util.stream.Collectors;
 
@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.yievsieievAndrii.user.User;
-import com.yievsieievAndrii.user.Role;
-import com.yievsieievAndrii.user.UserRepository;
+import com.volodymyrKadomtsev.user.User;
+import com.volodymyrKadomtsev.user.Role;
+import com.volodymyrKadomtsev.user.UserRepository;
 
 /**
  * DatabaseUserDetailsService

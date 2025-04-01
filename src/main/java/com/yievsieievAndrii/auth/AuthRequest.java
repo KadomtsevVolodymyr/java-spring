@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.auth;
+package com.volodymyrKadomtsev.auth;
 
 /**
  * AuthRequest

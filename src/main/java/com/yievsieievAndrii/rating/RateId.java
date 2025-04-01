@@ -1,9 +1,9 @@
-package com.yievsieievAndrii.rating;
+package com.volodymyrKadomtsev.rating;
 
 import java.io.Serializable;
 
-import com.yievsieievAndrii.carsharing.Car;
-import com.yievsieievAndrii.user.User;
+import com.volodymyrKadomtsev.carsharing.Car;
+import com.volodymyrKadomtsev.user.User;
 
 /**
  * RateId

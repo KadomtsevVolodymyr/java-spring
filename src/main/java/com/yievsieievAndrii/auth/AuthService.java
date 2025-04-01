@@ -1,5 +1,5 @@
 
-package com.yievsieievAndrii.auth;
+package com.volodymyrKadomtsev.auth;
 
 import java.util.Collections;
 
@@ -12,10 +12,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.yievsieievAndrii.user.Role;
-import com.yievsieievAndrii.user.RoleRepository;
-import com.yievsieievAndrii.user.User;
-import com.yievsieievAndrii.user.UserRepository;
+import com.volodymyrKadomtsev.user.Role;
+import com.volodymyrKadomtsev.user.RoleRepository;
+import com.volodymyrKadomtsev.user.User;
+import com.volodymyrKadomtsev.user.UserRepository;
 
 /**
  * AuthService

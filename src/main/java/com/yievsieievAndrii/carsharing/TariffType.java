@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.carsharing;
+package com.volodymyrKadomtsev.carsharing;
 
 public enum TariffType {
   STANDARD,

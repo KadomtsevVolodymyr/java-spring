@@ -1,5 +1,5 @@
 //
-//package com.yievsieievAndrii.configuration;
+//package com.volodymyrKadomtsev.configuration;
 //
 //import java.util.Date;
 //import org.springframework.beans.factory.annotation.Value;
