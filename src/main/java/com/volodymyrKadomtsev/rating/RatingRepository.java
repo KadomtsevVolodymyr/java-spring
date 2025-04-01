@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.rating;
+package com.kadomtsevVolodymyr.rating;
 
 import java.util.ArrayList;
 import java.util.List;

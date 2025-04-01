@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.carsharing;
+package com.kadomtsevVolodymyr.carsharing;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

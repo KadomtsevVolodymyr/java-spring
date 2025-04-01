@@ -1,5 +1,5 @@
 
-package com.yievsieievAndrii.user;
+package com.kadomtsevVolodymyr.user;
 
 public class User {
 
