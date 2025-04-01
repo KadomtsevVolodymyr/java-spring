@@ -1,5 +1,5 @@
 
-package com.yievsieievAndrii.user;
+package com.volodymyrKadomtsev.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,8 +1,8 @@
-package com.yievsieievAndrii.carsharing;
+package com.volodymyrKadomtsev.carsharing;
 
 import java.time.LocalDate;
 
-import com.yievsieievAndrii.user.User;
+import com.volodymyrKadomtsev.user.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

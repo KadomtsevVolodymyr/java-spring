@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.carsharing;
+package com.volodymyrKadomtsev.carsharing;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yievsieievAndrii.user.User;
-import com.yievsieievAndrii.user.UserService;
+import com.volodymyrKadomtsev.user.User;
+import com.volodymyrKadomtsev.user.UserService;
 
 @RestController
 @RequestMapping("/cars")

@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.user;
+package com.volodymyrKadomtsev.user;
 
 import java.util.List;
 import java.util.Optional;

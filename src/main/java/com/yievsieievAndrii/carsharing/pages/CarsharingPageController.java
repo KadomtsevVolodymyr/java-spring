@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.carsharing.pages;
+package com.volodymyrKadomtsev.carsharing.pages;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.yievsieievAndrii.carsharing.Car;
-import com.yievsieievAndrii.carsharing.Carsharing;
-import com.yievsieievAndrii.carsharing.CarsharingService;
-import com.yievsieievAndrii.user.User;
-import com.yievsieievAndrii.user.UserService;
+import com.volodymyrKadomtsev.carsharing.Car;
+import com.volodymyrKadomtsev.carsharing.Carsharing;
+import com.volodymyrKadomtsev.carsharing.CarsharingService;
+import com.volodymyrKadomtsev.user.User;
+import com.volodymyrKadomtsev.user.UserService;
 
 import jakarta.validation.Valid;
 

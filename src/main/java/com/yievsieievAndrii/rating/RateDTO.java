@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.rating;
+package com.volodymyrKadomtsev.rating;
 
 public class RateDTO {
 

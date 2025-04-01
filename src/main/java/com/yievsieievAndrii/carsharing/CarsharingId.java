@@ -1,9 +1,9 @@
 
-package com.yievsieievAndrii.carsharing;
+package com.volodymyrKadomtsev.carsharing;
 
 import java.io.Serializable;
 
-import com.yievsieievAndrii.user.User;
+import com.volodymyrKadomtsev.user.User;
 
 /**
  * CarsharingId
