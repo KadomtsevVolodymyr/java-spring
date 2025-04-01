@@ -1,5 +1,5 @@
 
-package com.yievsieievAndrii.aspects;
+package com.volodymyrKadomtsev.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 public class LoggingAspect {
   private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-  @AfterReturning(pointcut = "execution(* com.yievsieievAndrii.carsharing.CarsharingController.*(..))", returning = "result")
+  @AfterReturning(pointcut = "execution(* com.volodymyrKadomtsev.carsharing.CarsharingController.*(..))", returning = "result")
   public void afterCarLogging(JoinPoint joinPoint, Object result) {
     Object[] args = joinPoint.getArgs();
     logger.info("Args of car: {}", args);

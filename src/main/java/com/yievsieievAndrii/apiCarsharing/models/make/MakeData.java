@@ -1,5 +1,5 @@
 
-package com.yievsieievAndrii.apiCarsharing.models.make;
+package com.volodymyrKadomtsev.apiCarsharing.models.make;
 
 /**
  * MakeData

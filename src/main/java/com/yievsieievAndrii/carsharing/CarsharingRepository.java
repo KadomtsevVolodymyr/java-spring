@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.carsharing;
+package com.volodymyrKadomtsev.carsharing;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

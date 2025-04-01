@@ -1,4 +1,4 @@
-//package com.yievsieievAndrii.configuration;
+//package com.volodymyrKadomtsev.configuration;
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.security.config.Customizer;

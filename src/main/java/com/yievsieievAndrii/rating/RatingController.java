@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.rating;
+package com.volodymyrKadomtsev.rating;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yievsieievAndrii.carsharing.Car;
-import com.yievsieievAndrii.carsharing.CarsharingService;
-import com.yievsieievAndrii.user.User;
-import com.yievsieievAndrii.user.UserRepository;
-import com.yievsieievAndrii.user.UserService;
+import com.volodymyrKadomtsev.carsharing.Car;
+import com.volodymyrKadomtsev.carsharing.CarsharingService;
+import com.volodymyrKadomtsev.user.User;
+import com.volodymyrKadomtsev.user.UserRepository;
+import com.volodymyrKadomtsev.user.UserService;
 
 @RestController
 @RequestMapping("/ratings")

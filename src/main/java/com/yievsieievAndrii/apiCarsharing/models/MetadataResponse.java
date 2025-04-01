@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.apiCarsharing.models;
+package com.volodymyrKadomtsev.apiCarsharing.models;
 
 import java.util.List;
 

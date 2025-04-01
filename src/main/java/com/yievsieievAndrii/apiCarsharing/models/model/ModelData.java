@@ -1,4 +1,4 @@
-package com.yievsieievAndrii.apiCarsharing.models.model;
+package com.volodymyrKadomtsev.apiCarsharing.models.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
