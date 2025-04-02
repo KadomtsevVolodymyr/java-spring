@@ -1,3 +1,4 @@
+package com.volodymyrKadomtsev.configuration;
 //package com.volodymyrKadomtsev.configuration;
 //
 //import org.springframework.context.annotation.Bean;
