@@ -1,4 +1,4 @@
-package com.kadomtsevVolodymyr.rating;
+package com.volodymyrKadomtsev.rating;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +29,17 @@ public class RatingRepository {
   }
 
   public Rating findById(Long userId, Long carId) {
-    return rates.stream().filter(rate -> rate.getCarId().equals(carId) && rate.getUserId().equals(userId)).findFirst().orElse(null);
+    return rates.stream().filter(rate -> rate.getCarId().equals(carId) && rate.getUserId().equals(userId)).findFirst()
+        .orElse(null);
   }
 
   public Rating save(Rating rate) {
     rates.add(rate);
     return rate;
   }
-  
+
   public boolean deleteById(Long userId, Long carId) {
     return rates.removeIf(rate -> rate.getCarId().equals(carId) && rate.getUserId().equals(userId));
   }
-  
+
 }

@@ -1,11 +1,11 @@
-package com.kadomtsevVolodymyr.user;
+package com.volodymyrKadomtsev.user;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService  {
+public class UserService {
 
   private final UserRepository userRepository;
 

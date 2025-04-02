@@ -1,4 +1,4 @@
-package com.kadomtsevVolodymyr.carsharing;
+package com.volodymyrKadomtsev.carsharing;
 
 import java.util.List;
 

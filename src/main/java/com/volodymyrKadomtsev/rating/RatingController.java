@@ -1,4 +1,4 @@
-package com.kadomtsevVolodymyr.rating;
+package com.volodymyrKadomtsev.rating;
 
 import java.util.List;
 
@@ -33,5 +33,4 @@ public class RatingController {
     return RatingService.createRating(rate);
   }
 
-  
 }

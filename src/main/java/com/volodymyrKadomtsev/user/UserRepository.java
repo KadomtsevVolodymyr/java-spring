@@ -1,4 +1,4 @@
-package com.kadomtsevVolodymyr.user;
+package com.volodymyrKadomtsev.user;
 
 import java.util.ArrayList;
 import java.util.List;

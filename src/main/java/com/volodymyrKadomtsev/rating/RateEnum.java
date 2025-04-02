@@ -1,4 +1,4 @@
-package com.kadomtsevVolodymyr.rating;
+package com.volodymyrKadomtsev.rating;
 
 enum RateEnum {
   BAD,

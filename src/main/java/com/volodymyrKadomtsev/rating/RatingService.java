@@ -1,11 +1,11 @@
-package com.kadomtsevVolodymyr.rating;
+package com.volodymyrKadomtsev.rating;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class RatingService  {
+public class RatingService {
 
   private final RatingRepository ratingRepository;
 
@@ -24,6 +24,5 @@ public class RatingService  {
   public Rating createRating(Rating rate) {
     return ratingRepository.save(rate);
   }
-
 
 }

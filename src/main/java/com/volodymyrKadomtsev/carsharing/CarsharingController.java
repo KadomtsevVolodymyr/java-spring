@@ -1,4 +1,4 @@
-package com.kadomtsevVolodymyr.carsharing;
+package com.volodymyrKadomtsev.carsharing;
 
 import java.util.List;
 
@@ -25,12 +25,12 @@ public class CarsharingController {
     return carsharingService.getAllCars();
   }
 
-  //@GetMapping("/page")
-  //public String viewCars(Model model) {
-  //  model.addAttribute("message", "Hello World");
+  // @GetMapping("/page")
+  // public String viewCars(Model model) {
+  // model.addAttribute("message", "Hello World");
   //
-  //  return "index";
-  //}
+  // return "index";
+  // }
 
   @GetMapping("/{id}")
   public Car getCarById(@PathVariable Long id) {

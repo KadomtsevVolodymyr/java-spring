@@ -1,5 +1,5 @@
 
-package com.kadomtsevVolodymyr.user;
+package com.volodymyrKadomtsev.user;
 
 public class User {
 
@@ -47,6 +47,5 @@ public class User {
   public void setPassword(String password) {
     this.password = password;
   }
-
 
 }

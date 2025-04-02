@@ -1,6 +1,4 @@
-package com.kadomtsevVolodymyr;
-
-
+package com.volodymyrKadomtsev;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
