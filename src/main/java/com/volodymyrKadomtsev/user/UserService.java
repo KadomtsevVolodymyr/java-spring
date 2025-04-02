@@ -1,32 +1,51 @@
+
 package com.volodymyrKadomtsev.user;
 
-import java.util.List;
+public class User {
 
-import org.springframework.stereotype.Service;
+  private Long id;
 
-@Service
-public class UserService {
+  private static Long incrementId = 1L;
 
-  private final UserRepository userRepository;
+  private String username;
 
-  public UserService(UserRepository userRepository) {
-    this.userRepository = userRepository;
+  private String email;
+
+  private String password;
+
+  public User(String username, String email, String password) {
+    this.id = User.incrementId++;
+    this.username = username;
+    this.email = email;
+    this.password = password;
   }
 
-  public List<User> getAllUsers() {
-    return userRepository.findAll();
+  public Long getId() {
+    return id;
   }
 
-  public User getUserById(Long id) {
-    return userRepository.findById(id);
+  public String getUsername() {
+    return username;
   }
 
-  public User createUser(User user) {
-    return userRepository.save(user);
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public boolean deleteUser(Long id) {
-    return userRepository.deleteById(id);
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
 }
