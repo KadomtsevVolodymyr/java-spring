@@ -17,12 +17,11 @@ public class RatingService {
     return ratingRepository.findAll();
   }
 
-  public Rating getRatingById(Long userId, Long carId) {
-    return ratingRepository.findById(userId, carId);
+  public Rating getRatingById(Long patientId, Long doctorId) {
+    return ratingRepository.findById(patientId, doctorId);
   }
 
-  public Rating createRating(Rating rate) {
-    return ratingRepository.save(rate);
+  public Rating createRating(Rating rating) {
+    return ratingRepository.save(rating);
   }
-
 }
