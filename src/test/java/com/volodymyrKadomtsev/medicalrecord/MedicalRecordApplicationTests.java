@@ -1,10 +1,10 @@
-package com.volodymyrKadomtsev.carsharing;
+package com.volodymyrKadomtsev.medicalrecord;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CarsharingApplicationTests {
+class MedicalRecordApplicationTests {
 
 	@Test
 	void contextLoads() {
