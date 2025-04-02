@@ -1,12 +1,11 @@
 package com.volodymyrKadomtsev.rating;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class RatingService  {
+public class RatingService {
 
   private final RatingRepository ratingRepository;
 
@@ -14,17 +13,15 @@ public class RatingService  {
     this.ratingRepository = ratingRepository;
   }
 
-  public List<Rate> getAllRatings() {
+  public List<Rating> getAllRatings() {
     return ratingRepository.findAll();
   }
 
-  //public Optional<Rate> getRatingById(Long rateId) {
-  //  return ratingRepository.findById(rateId);
-  //}
-
-  public Rate createRating(Rate rate) {
-    return ratingRepository.save(rate);
+  public Rating getRatingById(Long patientId, Long doctorId) {
+    return ratingRepository.findById(patientId, doctorId);
   }
 
-
+  public Rating createRating(Rating rating) {
+    return ratingRepository.save(rating);
+  }
 }
