@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -9,8 +9,7 @@
 
 <body>
   <h1>Create a New Medical Record</h1>
-
-  <form th:action="@{/views/records}" th:object="${record}" method="post">
+  <form th:action="@{/views/records}" th:object="${record}" method="post" th:method="post">
     <label for="patientName">Patient Name:</label>
     <input type="text" id="patientName" name="patientName" th:field="*{patientName}" />
     <span th:if="${#fields.hasErrors('patientName')}" th:errors="*{patientName}" style="color: red;"></span>

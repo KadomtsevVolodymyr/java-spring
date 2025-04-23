@@ -1,22 +1,24 @@
+// Rate.java
 package com.volodymyrKadomtsev.rating;
 
 import com.volodymyrKadomtsev.user.User;
 import jakarta.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "rate")
-@IdClass(RateId.class)
 public class Rate {
 
-  @Id
+  @EmbeddedId
+  private RateId id;
+
   @ManyToOne
-  @JoinColumn(name = "patient_id", nullable = false)
+  @MapsId("patientId")
+  @JoinColumn(name = "patient_id")
   private User patient;
 
-  @Id
   @ManyToOne
-  @JoinColumn(name = "doctor_id", nullable = false)
+  @MapsId("doctorId")
+  @JoinColumn(name = "doctor_id")
   private User doctor;
 
   @Column(length = 2048, nullable = false)
@@ -32,8 +34,17 @@ public class Rate {
   public Rate(User patient, User doctor, RateEnum rate, String review) {
     this.patient = patient;
     this.doctor = doctor;
-    this.rate = rate;
     this.review = review;
+    this.rate = rate;
+    this.id = new RateId(patient.getId(), doctor.getId());
+  }
+
+  public RateId getId() {
+    return id;
+  }
+
+  public void setId(RateId id) {
+    this.id = id;
   }
 
   public User getPatient() {
@@ -66,19 +77,5 @@ public class Rate {
 
   public void setReview(String review) {
     this.review = review;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Rate)) return false;
-    Rate that = (Rate) o;
-    return Objects.equals(patient, that.patient) &&
-           Objects.equals(doctor, that.doctor);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(patient, doctor);
   }
 }

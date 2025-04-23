@@ -42,10 +42,10 @@ public class MedicalRecordPageController {
   }
 
   @PostMapping
-  public String createRecord(@Valid @ModelAttribute MedicalRecord record, BindingResult bindingResult, Model model) {
+  public String createRecord(@Valid @ModelAttribute("record") MedicalRecord record,
+      BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
-      model.addAttribute("record", record);
-      return "createRecord";
+      return "createRecord"; // Не додаємо record вдруге вручну
     }
     medicalRecordService.createRecord(record);
     return REDIRECT_RECORDS;

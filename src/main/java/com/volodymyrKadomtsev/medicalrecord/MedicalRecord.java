@@ -1,38 +1,41 @@
 package com.volodymyrKadomtsev.medicalrecord;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
+@Entity
+@Table(name = "medical_records")
 public class MedicalRecord {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private static Long incrementId = 1L;
 
+  @NotBlank(message = "Patient name is required")
   private String patientName;
+
+  @NotBlank(message = "Diagnosis is required")
   private String diagnosis;
+
   private Boolean isFinalized = false;
-  private Long doctorId = null;
+  private Long doctorId;
 
   public MedicalRecord() {
-    // No-args constructor для Spring MVC / Thymeleaf
+    // no-args constructor
   }
 
   public MedicalRecord(String patientName, String diagnosis) {
-    this.id = MedicalRecord.incrementId++;
     this.patientName = patientName;
     this.diagnosis = diagnosis;
   }
 
+  // Getters and Setters
   public Long getId() {
     return id;
   }
 
-public void setId(Long id) {
-  this.id = id;
-}
-  public static Long getIncrementId() {
-    return incrementId;
-  }
-
-  public static void setIncrementId(Long incrementId) {
-    MedicalRecord.incrementId = incrementId;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getPatientName() {

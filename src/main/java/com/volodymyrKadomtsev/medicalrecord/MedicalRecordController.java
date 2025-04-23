@@ -33,8 +33,19 @@ public class MedicalRecordController {
   public boolean unfinalizeRecord(@PathVariable Long recordId, @PathVariable Long doctorId) {
     return medicalRecordService.unfinalizeRecord(recordId, doctorId);
   }
+
   @DeleteMapping("/{id}")
-public void deleteRecord(@PathVariable Long id) {
+  public void deleteRecord(@PathVariable Long id) {
     medicalRecordService.deleteRecord(id);
-}
+  }
+
+  @PostMapping
+  public MedicalRecord createRecord(@RequestBody MedicalRecord record) {
+    return medicalRecordService.createRecord(record);
+  }
+
+  @PutMapping("/{id}")
+  public MedicalRecord updateRecord(@PathVariable Long id, @RequestBody MedicalRecord record) {
+    return medicalRecordService.updateRecord(id, record);
+  }
 }

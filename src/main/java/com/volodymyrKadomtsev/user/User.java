@@ -1,20 +1,28 @@
-
 package com.volodymyrKadomtsev.user;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private static Long incrementId = 1L;
-
+  @Column(nullable = false, unique = true)
   private String username;
 
+  @Column(nullable = false, unique = true)
   private String email;
 
+  @Column(nullable = false)
   private String password;
 
+  public User() {
+  }
+
   public User(String username, String email, String password) {
-    this.id = User.incrementId++;
     this.username = username;
     this.email = email;
     this.password = password;
@@ -47,5 +55,4 @@ public class User {
   public void setPassword(String password) {
     this.password = password;
   }
-
 }

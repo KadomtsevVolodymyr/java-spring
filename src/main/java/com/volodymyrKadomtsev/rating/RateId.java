@@ -1,8 +1,10 @@
 package com.volodymyrKadomtsev.rating;
 
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
 public class RateId implements Serializable {
 
   private Long patientId;
@@ -38,9 +40,8 @@ public class RateId implements Serializable {
       return true;
     if (!(o instanceof RateId))
       return false;
-    RateId that = (RateId) o;
-    return Objects.equals(patientId, that.patientId) &&
-        Objects.equals(doctorId, that.doctorId);
+    RateId rateId = (RateId) o;
+    return Objects.equals(patientId, rateId.patientId) && Objects.equals(doctorId, rateId.doctorId);
   }
 
   @Override

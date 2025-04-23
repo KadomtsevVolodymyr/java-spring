@@ -7,48 +7,56 @@ import org.springframework.stereotype.Service;
 @Service
 public class MedicalRecordService {
 
-  private final MedicalRecordRepository medicalRecordRepository;
+  private final MedicalRecordRepository repository;
 
-  public MedicalRecordService(MedicalRecordRepository medicalRecordRepository) {
-    this.medicalRecordRepository = medicalRecordRepository;
+  public MedicalRecordService(MedicalRecordRepository repository) {
+    this.repository = repository;
   }
 
   public List<MedicalRecord> getAllRecords() {
-    return medicalRecordRepository.findAll();
+    return repository.findAll();
   }
 
   public MedicalRecord getRecordById(Long id) {
-    return medicalRecordRepository.findById(id);
-  }
-
-  public boolean finalizeRecord(Long recordId, Long doctorId) {
-    if (doctorId == null) {
-      return false;
-    }
-    return medicalRecordRepository.finalizeRecord(recordId, doctorId);
-  }
-
-  public boolean unfinalizeRecord(Long recordId, Long doctorId) {
-    if (doctorId == null) {
-      return false;
-    }
-    return medicalRecordRepository.unfinalizeRecord(recordId, doctorId);
+    return repository.findById(id).orElse(null);
   }
 
   public MedicalRecord createRecord(MedicalRecord record) {
-    return medicalRecordRepository.save(record);
+    return repository.save(record);
   }
 
   public MedicalRecord updateRecord(Long id, MedicalRecord updatedRecord) {
-    MedicalRecord record = medicalRecordRepository.findById(id);
-    if (record != null) {
-      record.setPatientName(updatedRecord.getPatientName());
-      record.setDiagnosis(updatedRecord.getDiagnosis());
-      return medicalRecordRepository.save(record);
-    }
-    return null;
+    MedicalRecord record = getRecordById(id);
+    if (record == null)
+      return null;
+    record.setPatientName(updatedRecord.getPatientName());
+    record.setDiagnosis(updatedRecord.getDiagnosis());
+    return repository.save(record);
   }
-public void deleteRecord(Long id) {
-    medicalRecordRepository.deleteById(id);
-}
+
+  public void deleteRecord(Long id) {
+    repository.deleteById(id);
+  }
+
+  public boolean finalizeRecord(Long recordId, Long doctorId) {
+    MedicalRecord record = getRecordById(recordId);
+    if (record != null && record.getDoctorId() == null) {
+      record.setDoctorId(doctorId);
+      record.setIsFinalized(true);
+      repository.save(record);
+      return true;
+    }
+    return false;
+  }
+
+  public boolean unfinalizeRecord(Long recordId, Long doctorId) {
+    MedicalRecord record = getRecordById(recordId);
+    if (record != null && record.getDoctorId() != null) {
+      record.setDoctorId(null);
+      record.setIsFinalized(false);
+      repository.save(record);
+      return true;
+    }
+    return false;
+  }
 }

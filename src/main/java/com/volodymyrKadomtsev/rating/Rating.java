@@ -1,9 +1,24 @@
 package com.volodymyrKadomtsev.rating;
 
-public class Rating {
+import jakarta.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@IdClass(RateId.class)
+@Table(name = "ratings")
+public class Rating implements Serializable {
+
+  @Id
   private Long patientId;
+
+  @Id
   private Long doctorId;
+
+  @Enumerated(EnumType.STRING)
   private RateEnum rate;
+
+  public Rating() {
+  }
 
   public Rating(Long patientId, Long doctorId, RateEnum rate) {
     this.patientId = patientId;

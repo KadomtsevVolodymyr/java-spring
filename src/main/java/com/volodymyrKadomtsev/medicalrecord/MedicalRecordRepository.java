@@ -1,69 +1,25 @@
 package com.volodymyrKadomtsev.medicalrecord;
 
-import java.util.ArrayList;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+public interface MedicalRecordRepository extends JpaRepository<MedicalRecord, Long> {
 
-import jakarta.annotation.PostConstruct;
+  // Знайти всі записи, створені певним лікарем
+  List<MedicalRecord> findByDoctorId(Long doctorId);
 
-@Repository
-public class MedicalRecordRepository {
+  // Знайти всі фіналізовані записи
+  List<MedicalRecord> findByIsFinalizedTrue();
 
-  private final List<MedicalRecord> records = new ArrayList<>();
+  // Знайти всі не фіналізовані записи
+  List<MedicalRecord> findByIsFinalizedFalse();
 
-  @PostConstruct
-  private void init() {
-    records.add(new MedicalRecord("John Doe", "Flu"));
-    records.add(new MedicalRecord("Jane Smith", "Hypertension"));
-    records.add(new MedicalRecord("Emily Johnson", "Diabetes"));
-    records.add(new MedicalRecord("Michael Brown", "Asthma"));
-    records.add(new MedicalRecord("Linda Davis", "Back Pain"));
-  }
+  // Пошук пацієнтів по частині імені (нечітке співпадіння)
+  List<MedicalRecord> findByPatientNameContainingIgnoreCase(String namePart);
 
-  public List<MedicalRecord> findAll() {
-    return records;
-  }
-
-  public MedicalRecord findById(Long id) {
-    return records.stream().filter(record -> record.getId().equals(id)).findFirst().orElse(null);
-  }
-
-  public MedicalRecord save(MedicalRecord record) {
-    // Якщо запис з таким ID вже існує — оновлюємо
-    for (int i = 0; i < records.size(); i++) {
-      if (records.get(i).getId().equals(record.getId())) {
-        records.set(i, record);
-        return record;
-      }
-    }
-
-    // Інакше додаємо новий
-    records.add(record);
-    return record;
-  }
-
-  public boolean deleteById(Long id) {
-    return records.removeIf(record -> record.getId().equals(id));
-  }
-
-  public boolean finalizeRecord(Long recordId, Long doctorId) {
-    MedicalRecord record = findById(recordId);
-    if (record != null && record.getDoctorId() == null) {
-      record.setDoctorId(doctorId);
-      record.setIsFinalized(true);
-      return true;
-    }
-    return false;
-  }
-
-  public boolean unfinalizeRecord(Long recordId, Long doctorId) {
-    MedicalRecord record = findById(recordId);
-    if (record != null && record.getDoctorId() != null) {
-      record.setDoctorId(null);
-      record.setIsFinalized(false);
-      return true;
-    }
-    return false;
-  }
+  // Приклад кастомного запиту (JPQL)
+  @Query("SELECT r FROM MedicalRecord r WHERE r.diagnosis LIKE %:keyword%")
+  List<MedicalRecord> searchByDiagnosis(String keyword);
 }
