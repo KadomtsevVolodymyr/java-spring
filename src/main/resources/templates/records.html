@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medical Records</title>
+</head>
+
+<body>
+  <h1>Available Medical Records</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Diagnosis</th>
+        <th>Actions</th>
+        <th>Finalized By</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="record : ${records}">
+        <td th:text="${record.patientName}"></td>
+        <td th:text="${record.diagnosis}"></td>
+        <td>
+          <form th:if="${record.doctorId == null}" th:action="@{/views/records/{id}/finalize(id=${record.id})}"
+            method="post">
+            <input type="hidden" name="_method" value="put" />
+            <button type="submit">Finalize</button>
+          </form>
+
+          <form th:if="${record.doctorId != null}" th:action="@{/views/records/{id}/unfinalize(id=${record.id})}"
+            method="post">
+            <input type="hidden" name="_method" value="put" />
+            <button type="submit">Unfinalize</button>
+          </form>
+
+          <form th:action="@{/views/records/{id}(id=${record.id})}" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit">Delete</button>
+          </form>
+
+          <form th:action="@{/views/records/{id}/update(id=${record.id})}" method="get">
+            <button type="submit">Update</button>
+          </form>
+        </td>
+        <td th:text="${record.doctorId != null ? 'Doctor #' + record.doctorId : 'Not Finalized'}"></td>
+        <td th:text="${record.isFinalized ? 'Finalized' : 'Draft'}"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <h2>Create Medical Record</h2>
+    <a href="/views/records/create">Create Record</a>
+  </div>
+</body>
+
+</html>

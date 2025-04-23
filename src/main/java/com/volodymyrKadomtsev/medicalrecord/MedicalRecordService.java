@@ -34,4 +34,21 @@ public class MedicalRecordService {
     }
     return medicalRecordRepository.unfinalizeRecord(recordId, doctorId);
   }
+
+  public MedicalRecord createRecord(MedicalRecord record) {
+    return medicalRecordRepository.save(record);
+  }
+
+  public MedicalRecord updateRecord(Long id, MedicalRecord updatedRecord) {
+    MedicalRecord record = medicalRecordRepository.findById(id);
+    if (record != null) {
+      record.setPatientName(updatedRecord.getPatientName());
+      record.setDiagnosis(updatedRecord.getDiagnosis());
+      return medicalRecordRepository.save(record);
+    }
+    return null;
+  }
+public void deleteRecord(Long id) {
+    medicalRecordRepository.deleteById(id);
+}
 }

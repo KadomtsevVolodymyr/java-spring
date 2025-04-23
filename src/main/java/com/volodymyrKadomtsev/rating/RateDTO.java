@@ -2,33 +2,25 @@ package com.volodymyrKadomtsev.rating;
 
 public class RateDTO {
 
-  private Long userId;
-  private Long carId;
+  private Long patientId;
+  private Long doctorId;
   private RateEnum rate;
   private String review;
 
-  public Long getUserId() {
-    return userId;
+  public Long getPatientId() {
+    return patientId;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setPatientId(Long patientId) {
+    this.patientId = patientId;
   }
 
-  public Long getCarId() {
-    return carId;
+  public Long getDoctorId() {
+    return doctorId;
   }
 
-  public void setCarId(Long carId) {
-    this.carId = carId;
-  }
-
-  public String getReview() {
-    return review;
-  }
-
-  public void setReview(String review) {
-    this.review = review;
+  public void setDoctorId(Long doctorId) {
+    this.doctorId = doctorId;
   }
 
   public RateEnum getRate() {
@@ -37,5 +29,13 @@ public class RateDTO {
 
   public void setRate(RateEnum rate) {
     this.rate = rate;
+  }
+
+  public String getReview() {
+    return review;
+  }
+
+  public void setReview(String review) {
+    this.review = review;
   }
 }

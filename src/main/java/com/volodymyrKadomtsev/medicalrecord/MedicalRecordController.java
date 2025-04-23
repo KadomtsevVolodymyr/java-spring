@@ -33,4 +33,8 @@ public class MedicalRecordController {
   public boolean unfinalizeRecord(@PathVariable Long recordId, @PathVariable Long doctorId) {
     return medicalRecordService.unfinalizeRecord(recordId, doctorId);
   }
+  @DeleteMapping("/{id}")
+public void deleteRecord(@PathVariable Long id) {
+    medicalRecordService.deleteRecord(id);
+}
 }

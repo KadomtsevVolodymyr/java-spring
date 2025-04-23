@@ -21,13 +21,30 @@ public class MedicalRecordRepository {
     records.add(new MedicalRecord("Linda Davis", "Back Pain"));
   }
 
-  // Повертаємо всі медичні записи
   public List<MedicalRecord> findAll() {
     return records;
   }
 
   public MedicalRecord findById(Long id) {
     return records.stream().filter(record -> record.getId().equals(id)).findFirst().orElse(null);
+  }
+
+  public MedicalRecord save(MedicalRecord record) {
+    // Якщо запис з таким ID вже існує — оновлюємо
+    for (int i = 0; i < records.size(); i++) {
+      if (records.get(i).getId().equals(record.getId())) {
+        records.set(i, record);
+        return record;
+      }
+    }
+
+    // Інакше додаємо новий
+    records.add(record);
+    return record;
+  }
+
+  public boolean deleteById(Long id) {
+    return records.removeIf(record -> record.getId().equals(id));
   }
 
   public boolean finalizeRecord(Long recordId, Long doctorId) {

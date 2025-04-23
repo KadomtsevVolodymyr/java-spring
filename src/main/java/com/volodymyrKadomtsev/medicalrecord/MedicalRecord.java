@@ -10,6 +10,10 @@ public class MedicalRecord {
   private Boolean isFinalized = false;
   private Long doctorId = null;
 
+  public MedicalRecord() {
+    // No-args constructor для Spring MVC / Thymeleaf
+  }
+
   public MedicalRecord(String patientName, String diagnosis) {
     this.id = MedicalRecord.incrementId++;
     this.patientName = patientName;
@@ -20,6 +24,9 @@ public class MedicalRecord {
     return id;
   }
 
+public void setId(Long id) {
+  this.id = id;
+}
   public static Long getIncrementId() {
     return incrementId;
   }

@@ -1,69 +1,55 @@
 package com.volodymyrKadomtsev.rating;
 
-import java.util.Optional;
-
-import com.volodymyrKadomtsev.carsharing.Car;
 import com.volodymyrKadomtsev.user.User;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-/**
- * Rating
- */
+import jakarta.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "rate")
 @IdClass(RateId.class)
 public class Rate {
 
-
-  @ManyToOne
-  @JoinColumn(name = "user_id", nullable = false)
   @Id
-  private User user;
-
   @ManyToOne
-  @JoinColumn(name = "car_id", nullable = false)
+  @JoinColumn(name = "patient_id", nullable = false)
+  private User patient;
+
   @Id
-  private Car car;
+  @ManyToOne
+  @JoinColumn(name = "doctor_id", nullable = false)
+  private User doctor;
 
   @Column(length = 2048, nullable = false)
   private String review;
 
   @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
   private RateEnum rate;
 
-  public Rate() {}
+  public Rate() {
+  }
 
-  public Rate(User user, Car car, RateEnum rate, String review) {
-    this.user = user;
-    this.car = car;
+  public Rate(User patient, User doctor, RateEnum rate, String review) {
+    this.patient = patient;
+    this.doctor = doctor;
     this.rate = rate;
     this.review = review;
   }
 
-  public User getUser() {
-    return user;
+  public User getPatient() {
+    return patient;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setPatient(User patient) {
+    this.patient = patient;
   }
 
-  public Car getCar() {
-    return car;
+  public User getDoctor() {
+    return doctor;
   }
 
-  public void setCar(Car car) {
-    this.car = car;
+  public void setDoctor(User doctor) {
+    this.doctor = doctor;
   }
 
   public RateEnum getRate() {
@@ -82,4 +68,17 @@ public class Rate {
     this.review = review;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Rate)) return false;
+    Rate that = (Rate) o;
+    return Objects.equals(patient, that.patient) &&
+           Objects.equals(doctor, that.doctor);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(patient, doctor);
+  }
 }

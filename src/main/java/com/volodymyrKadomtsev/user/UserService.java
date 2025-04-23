@@ -1,51 +1,45 @@
-
 package com.volodymyrKadomtsev.user;
 
-public class User {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-  private Long id;
+import org.springframework.stereotype.Service;
 
-  private static Long incrementId = 1L;
+import jakarta.annotation.PostConstruct;
 
-  private String username;
+@Service
+public class UserService {
 
-  private String email;
+  private final List<User> users = new ArrayList<>();
 
-  private String password;
-
-  public User(String username, String email, String password) {
-    this.id = User.incrementId++;
-    this.username = username;
-    this.email = email;
-    this.password = password;
+  @PostConstruct
+  private void init() {
+    users.add(new User("anna", "anna@gmail.com", "pass123"));
+    users.add(new User("dr.smith", "smith@hospital.com", "medic456"));
+    users.add(new User("julia", "julia@yahoo.com", "secure789"));
+    users.add(new User("dr.jones", "jones@clinic.org", "healing321"));
+    users.add(new User("mark", "mark@mail.com", "markpass"));
   }
 
-  public Long getId() {
-    return id;
+  public List<User> getAllUsers() {
+    return users;
   }
 
-  public String getUsername() {
-    return username;
+  public Optional<User> getUserById(Long id) {
+    return users.stream().filter(user -> user.getId().equals(id)).findFirst();
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public User createUser(User user) {
+    users.add(user);
+    return user;
   }
 
-  public String getEmail() {
-    return email;
+  public boolean deleteUser(Long id) {
+    return users.removeIf(user -> user.getId().equals(id));
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public Optional<User> findByUsername(String username) {
+    return users.stream().filter(u -> u.getUsername().equalsIgnoreCase(username)).findFirst();
   }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
 }
